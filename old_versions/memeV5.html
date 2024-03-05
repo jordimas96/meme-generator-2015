@@ -1,13 +1,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="icon" type="image/x-icon" href="favicon.ico">
 		<style>
-			@font-face {
-				font-family: 'impactreg';
-				src: url('./impactreg.eot');
-				src: local('impactreg'), url('./impactreg.woff') format('woff'), url('./impactreg.ttf') format('truetype');
-			}
 			#canvas {
 				border: 2px dashed gray;
 			}
@@ -16,28 +10,20 @@
 				top: 8px;
 				left: 580px;
 				width: 600px;
-				height: 630px;
+				height: 30px;
 				background-color: lightgreen;
 			}
-			p
-			{/* IMATGES PETITES PER SELECCIONAR */
+			p {/* IMATGES PETITES PER SELECCIONAR */
 				margin: 10px;
 				float: left;
 				width: 100px;
 				height: 100px;
+				border-radius: 50%;
 			}
-			.imatgePetita:hover {
-				transform: rotate(5deg);
-				transition: 0.5s;
-				width: 120px;
-				position: absolute;
-			}
-			.imatgePetita {
-				transition: 0.5s;
-			}
-			#entrarDades, #opcionsPred {
-				position: absolute;
+			#entrarDades {
+				position:absolute;
 				top: 600px;
+				
 			}
 			.text {
 				font-family: Verdana;
@@ -52,7 +38,7 @@
 				left: 350px;
 				top: 0px;
 			}
-
+			
 			/* COLORS */
 			#colorIN12, #colorIN34 {
 				position: absolute;
@@ -69,7 +55,7 @@
 				top: 45px;
 			}
 			/* END COLORS */
-
+			
 			.check1, .check2 {
 				position: absolute;
 				left: 232px;
@@ -81,7 +67,7 @@
 			.check2 {
 				top: 69px;
 			}
-
+			
 			#posLin12 {
 				top: -12px;
 			}
@@ -94,7 +80,7 @@
 			#midaLin34 {
 				top: 66px;
 			}
-
+			
 			#linia1 {
 				top: -10px;
 			}
@@ -112,38 +98,7 @@
 				top: -10px;
 				left: 500px;
 			}
-			.botoEx1 {
-				position: absolute;
-				top: -10px;
-				left: 580px;
-			}
-			.botoEx2 {
-				position: absolute;
-				top: -10px;
-				left: 660px;
-			}
-			.botoEx3 {
-				position: absolute;
-				top: -10px;
-				left: 740px;
-			}
-			.botoEx4 {
-				position: absolute;
-				top: -10px;
-				left: 820px;
-			}
-			#rotar1, #rotar2 {
-				position: absolute;
-				top: 90px;
-			}
-
-			#rotar1 {
-				left: 20px;
-			}
-			#rotar2 {
-				left: 180px;
-			}
-
+			
 		</style>
 		<script>
 			function $(id)
@@ -153,42 +108,34 @@
 	</head>
 	<body onload="posaOpcionsMeme();">
 		<div id="opcionsMeme"></div>
-		<div id="opcionsPred">
-			<button class="botoEx1" onclick="ex(1);" >Example 1</button>
-			<button class="botoEx2" onclick="ex(2);" >Example 2</button>
-			<button class="botoEx3" onclick="ex(3);" >Example 3</button>
-			<button class="botoEx4" onclick="ex(4);" >Example 4</button>
-		</div>
 		<div id="entrarDades" hidden>
-			<button class="botoPred" onclick="pred();" >Reset values</button>
-			<span class="text">Line 1 <input id="linia1" placeholder="Write your text here" value="" oninput="actualitza();">
-				<input id="linia2" placeholder="Write your text here"  value="" oninput="actualitza();">
-				<input type="range" id="posLin12" oninput="actualitza();" value="5">
-				<input type="range" id="midaLin12" oninput="actualitza();">
-				<input type="color" id="colorIN12" onchange="actualitza();" value="#ffffff">
-				<input type="color" id="colorBord12" onchange="actualitza();">
-				<span class="check1"><input type="checkbox" id="maj1" onchange="actualitza();">Upper case</span>
+			<button class="botoPred" onclick="pred();" >Reiniciar valors</button>
+			<span class="text">Línia 1 <input id="linia1" placeholder="Escriu aquí el text" value="" oninput="actualitza();">
+			<input id="linia2" placeholder="Escriu aquí el text"  value="" oninput="actualitza();">
+			<input type="range" id="posLin12" oninput="actualitza();" value="5">
+			<input type="range" id="midaLin12" oninput="actualitza();">
+			<input type="color" id="colorIN12" onchange="actualitza();" value="#ffffff">
+			<input type="color" id="colorBord12" onchange="actualitza();">
+			<span class="check1"><input type="checkbox" id="maj1" onchange="actualitza();">Majúscules</span>
 			</span>
-
+			
 			<br><br><br>
-
-			<span class="text">Line 2 <input id="linia3" placeholder="Write your text here" value="" oninput="actualitza();">
-				<input id="linia4" placeholder="Write your text here" value="" oninput="actualitza();">
-				<input type="range" id="posLin34" oninput="actualitza();" value="95">
-				<input type="range" id="midaLin34" oninput="actualitza();">
-				<input type="color" id="colorIN34" onchange="actualitza();" value="#ffffff">
-				<input type="color" id="colorBord34" onchange="actualitza();">
-				<span class="check2"><input type="checkbox" id="maj2" onchange="actualitza();">Upper case</span>
+			
+			<span class="text">Línia 2 <input id="linia3" placeholder="Escriu aquí el text" value="" oninput="actualitza();">
+			<input id="linia4" placeholder="Escriu aquí el text" value="" oninput="actualitza();">
+			<input type="range" id="posLin34" oninput="actualitza();" value="95">
+			<input type="range" id="midaLin34" oninput="actualitza();">
+			<input type="color" id="colorIN34" onchange="actualitza();" value="#ffffff">
+			<input type="color" id="colorBord34" onchange="actualitza();">
+			<span class="check2"><input type="checkbox" id="maj2" onchange="actualitza();">Majúscules</span>
 			</span>
-			<input type="range" id="rotar1" oninput="actualitza();" value="0">
-			<input type="range" id="rotar2" oninput="actualitza();" value="0">
 		</div>
 		<canvas id="canvas" width="0" height="0" hidden></canvas>
 		<script>
 			var nImatge;
 			var c = document.getElementById("canvas");
 			var ctx = c.getContext("2d");
-
+			
 			var linia1;
 			var linia2;
 			var esMaj1;
@@ -196,7 +143,7 @@
 			var colorDins1;
 			var colorMarge1;
 			var distTop1;
-
+			
 			var linia3;
 			var linia4;
 			var esMaj2;
@@ -204,7 +151,7 @@
 			var colorDins2;
 			var colorMarge2;
 			var distTop2;
-
+			
 			function posaImatgeFons(n)
 			{
 				nImatge=n;
@@ -213,7 +160,7 @@
 					$("canvas").hidden=false;
 					$("entrarDades").hidden=false;
 					actualitza();
-
+					
 				}
 				else
 				{
@@ -222,7 +169,7 @@
 					actualitza();
 				}
 			}
-
+			
 			function setCookie(cname, cvalue, exseconds)
 			{
 				var d = new Date();
@@ -241,15 +188,16 @@
 				}
 				return "";
 			}
-
+			
 			if (document.cookie!="")//comprova si hi ha cookies guardades
 			{
 				//alert("Hi ha cookies");
-
+				//funciona nomes la imatge de fons i els 2 inputs//
+				
 				nImatge=getCookie("imatge");
 				posaImatgeFons(nImatge);
-
-
+				
+				
 				$("linia1").value=getCookie("linia1");
 				$("linia2").value=getCookie("linia2");
 				//si aqui hi ha algun alert, les cookies no es carreguen correctament// NO POSAR ALERT //
@@ -258,7 +206,7 @@
 				$("posLin12").value=getCookie("distTop1");
 				$("colorIN12").value=getCookie("colorDins1");
 				$("colorBord12").value=getCookie("colorMarge1");
-
+				
 				$("linia3").value=getCookie("linia3");
 				$("linia4").value=getCookie("linia4");
 				$("maj2").checked=false;
@@ -266,25 +214,21 @@
 				$("posLin34").value=getCookie("distTop2");
 				$("colorIN34").value=getCookie("colorDins2");
 				$("colorBord34").value=getCookie("colorMarge2");
-
-
-				$("rotar1").value=getCookie("rot1");
-				$("rotar2").value=getCookie("rot2");
-
+				
 				actualitza();
 			}
 			else
 			{
-				//pred();
+				pred();
 				posaImatgeFons(0);
 				/*$("canvas").hidden=true;
 				$("entrarDades").hidden=true;*/
 			}
-
+			
 			function guardaCookies(cad)
 			{
 				setCookie("imatge",nImatge,cad);
-
+				
 				setCookie("linia1",$("linia1").value,cad);
 				setCookie("linia2",$("linia2").value,cad);
 				/*setCookie("esMaj1",$("maj1").checked,cad);*/
@@ -292,7 +236,7 @@
 				setCookie("distTop1",$("posLin12").value,cad);
 				setCookie("colorDins1",$("colorIN12").value,cad);
 				setCookie("colorMarge1",$("colorBord12").value,cad);
-
+				
 				setCookie("linia3",$("linia3").value,cad);
 				setCookie("linia4",$("linia4").value,cad);
 				/*setCookie("esMaj2",$("maj2").checked,cad);*/
@@ -300,30 +244,26 @@
 				setCookie("distTop2",$("posLin34").value,cad);
 				setCookie("colorDins2",$("colorIN34").value,cad);
 				setCookie("colorMarge2",$("colorBord34").value,cad);
-
-
-				setCookie("rot1",$("rotar1").value,cad);
-				setCookie("rot2",$("rotar2").value,cad);
 			}
-
+			
 			function actualitza()
 			{
 				if (nImatge!=0)
 				{
 					img = new Image();
-					img.src = "imatges/meme"+nImatge+".png";//aqui es comença a carregar la imatge
-
+					img.src = "../imatges/meme"+nImatge+".png";//aqui es comença a carregar la imatge
+					
 					img.onload = function(){
 						/*
 						quan la imatge s'ha acabat de carregar s'executa això, si alhora de llegir les cookies hi ha algun alert que paralitzi
 						aquella part del programa, aquesta s'executarà abans i causarà que no es carregin bé les cookies
 						*/
-
+						
 						c.width=img.width;//adaptar la mida del canvas a la imatge
 						c.height=img.height;
-
+						
 						ctx.drawImage(img, 0, 0);
-
+						
 						// LINIA 1 i 2 //
 						linia1 = $("linia1").value;
 						linia2 = $("linia2").value;
@@ -332,7 +272,8 @@
 						colorDins1=$("colorIN12").value;//color
 						colorMarge1=$("colorBord12").value;//color marge
 						distTop1=$("posLin12").value*2;//distància amunt o avall
-
+						
+						ctx.textAlign="center";
 						ctx.font = "bold "+midaLin12+"px impact";
 						ctx.fillStyle = colorDins1;
 						ctx.lineWidth=midaLin12/25;//si el text es molt petit, la vora que el ressegueix es mes prima
@@ -342,18 +283,12 @@
 							linia1=linia1.toUpperCase();
 							linia2=linia2.toUpperCase();
 						}
-						ctx.save();
-						ctx.translate(img.width/2, 40+distTop1);
-						ctx.rotate($("rotar1").value/100*2*Math.PI);
-						ctx.textAlign = "center";
-
-						ctx.fillText(linia1,0,0);
-						ctx.strokeText(linia1,0,0);
-						ctx.fillText(linia2,0,50);
-						ctx.strokeText(linia2,0,50);
-
-						ctx.restore();
-
+						
+						ctx.fillText(linia1, img.width/2, 40+distTop1);//
+						ctx.strokeText(linia1, img.width/2, 40+distTop1);
+						ctx.fillText(linia2, img.width/2, 90+distTop1);
+						ctx.strokeText(linia2, img.width/2, 90+distTop1);
+						
 						// LINIA 3 i 4 //
 						linia3 = $("linia3").value;
 						linia4 = $("linia4").value;
@@ -362,7 +297,7 @@
 						colorDins2=$("colorIN34").value;//color
 						colorMarge2=$("colorBord34").value;//color marge
 						distTop2=$("posLin34").value*2;//distància amunt o avall
-
+						
 						ctx.font = "bold "+midaLin34+"px impact";
 						ctx.fillStyle = colorDins2;
 						ctx.lineWidth=midaLin34/25;//si el text es molt petit, la vora que el ressegueix es mes prima
@@ -372,19 +307,11 @@
 							linia3=linia3.toUpperCase();
 							linia4=linia4.toUpperCase();
 						}
-
-						ctx.save();
-						ctx.translate(img.width/2, img.height+distTop2-250);
-						ctx.rotate($("rotar2").value/100*2*Math.PI);
-						ctx.textAlign = "center";
-
-						ctx.fillText(linia3,0,0);
-						ctx.strokeText(linia3,0,0);
-						ctx.fillText(linia4,0,50);
-						ctx.strokeText(linia4,0,50);
-
-						ctx.restore();
-
+						ctx.fillText(linia3, img.width/2, img.height+distTop2-250);
+						ctx.strokeText(linia3, img.width/2, img.height+distTop2-250);
+						ctx.fillText(linia4, img.width/2, img.height+distTop2-200);
+						ctx.strokeText(linia4, img.width/2, img.height+distTop2-200);
+						
 						// Guarda totes les cookies //
 						guardaCookies(3600);//una hora//
 					}
@@ -393,17 +320,17 @@
 		</script>
 		<!--                //////////////                        -->
 		<script>
-			var NUM_IMATGES=25;
-
+			var NUM_IMATGES=11;
+			
 			function posaOpcionsMeme()
 			{
 				var text="";
-
+				
 				for (var i=1;i<=NUM_IMATGES;i++)
-					text += '<p><img class="imatgePetita" src="../imatges/meme'+i+'.png" width="100px" onClick="posaImatgeFons('+i+')" draggable="false" style="border-radius: 10px"></p>';
+					text += '<p><img src="../imatges/meme'+i+'.png" width="100px" onClick="posaImatgeFons('+i+')" draggable="false" style="border-radius: 10%"></p>';
 				$("opcionsMeme").innerHTML=text;
 			}
-
+			
 			function pred()
 			{
 				$("linia1").value="";
@@ -413,8 +340,7 @@
 				$("posLin12").value=5;
 				$("colorIN12").value="#ffffff";
 				$("colorBord12").value="#000000";
-				$("rotar1").value=0;
-
+				
 				$("linia3").value="";
 				$("linia4").value="";
 				$("maj2").checked=false;
@@ -422,79 +348,14 @@
 				$("posLin34").value=95;
 				$("colorIN34").value="#ffffff";
 				$("colorBord34").value="#000000";
-				$("rotar2").value=0;
-
-
+				
+				
 				//$("canvas").hidden=true;
 				//$("entrarDades").hidden=true;
 				actualitza();
 			}
-
-			function ex(n)
-			{
-				pred();
-				if (n==1)
-				{
-					posaImatgeFons(6);//Fry//
-
-					$("linia1").value="No se si hacer";
-					$("linia2").value="la práctica";
-					$("maj1").checked=false;
-					$("midaLin12").value=54;
-					$("posLin12").value=10;
-
-					$("linia3").value="";
-					$("linia4").value="...o no hacerla";
-					$("maj2").checked=true;
-					$("midaLin34").value=70;
-					$("posLin34").value=90;
-				}
-				else if (n==2)
-				{
-					posaImatgeFons(1);//no es tan sencillo.../
-
-					$("linia1").value="No es tan sencillo";
-					$("linia4").value="Hacer esta práctica";
-					$("maj2").checked=true;
-				}
-				else if (n==3)
-				{
-					posaImatgeFons(12);//chiste malo//
-
-					$("linia1").value="¿Qué es un dinosaurio";
-					$("linia2").value="encerando el suelo?";
-					$("maj1").checked=false;
-					$("midaLin12").value=55;
-					$("posLin12").value=8;
-
-					$("linia3").value="";
-					$("linia4").value="parqué jurásico";
-					$("maj2").checked=true;
-					$("midaLin34").value=63;
-					$("posLin34").value=88;
-				}
-
-				else if (n==4)
-				{
-					posaImatgeFons(2);//Matias Prats//
-
-					$("linia1").value="Hospital agota las";
-					$("linia2").value="existencias de anestesia";
-					$("maj1").checked=false;
-					$("midaLin12").value=50;
-					$("posLin12").value=11;
-
-					$("linia3").value="se acabó lo";
-					$("linia4").value="que sedaba";
-					$("maj2").checked=true;
-					$("midaLin34").value=55;
-					$("posLin34").value=87;
-				}
-
-				actualitza();
-			}
-
-
+			
+			
 		</script>
 	</body>
 </html>

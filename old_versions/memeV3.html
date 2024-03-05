@@ -1,0 +1,220 @@
+<html>
+	<head>
+		<style>
+			#canvas {
+				border: 2px dashed gray;
+			}
+			#opcionsMeme {
+				position: absolute;
+				top: 8px;
+				left: 580px;
+				width: 600px;
+				height: 30px;
+				background-color: lightgreen;
+			}
+			p {/* IMATGES PETITES PER SELECCIONAR */
+				margin: 10px;
+				float: left;
+				width: 100px;
+				height: 100px;
+			}
+			#entrarDades {
+				position:absolute;
+				top: 600px;
+				
+			}
+			.text {
+				font-family: Verdana;
+				font-size: 16px;
+			}
+			#linia1, #linia2, #linia3, #linia4 {/* INPUT TEXT */
+				position: absolute;
+				left: 60px;
+			}
+			#posLin12, #midaLin12, #posLin34, #midaLin34 {/* RANGE */
+				position: absolute;
+				left: 350px;
+				top: 0px;
+			}
+			
+			/* COLORS */
+			#colorIN12, #colorIN34 {
+				position: absolute;
+				left: 240px;
+			}
+			#colorBord12,  #colorBord34 {
+				position: absolute;
+				left: 290px;
+			}
+			#colorIN12, #colorBord12 {
+				top: -11px;
+			}
+			#colorIN34, #colorBord34 {
+				top: 45px;
+			}
+			/* END COLORS */
+			
+			.check1, .check2 {
+				position: absolute;
+				left: 232px;
+				width: 120px;
+			}
+			.check1 {
+				top: 13px;
+			}
+			.check2 {
+				top: 69px;
+			}
+			
+			#posLin12 {
+				top: -12px;
+			}
+			#midaLin12 {
+				top: 10px;
+			}
+			#posLin34 {
+				top: 44px;
+			}
+			#midaLin34 {
+				top: 66px;
+			}
+			
+			#linia1 {
+				top: -10px;
+			}
+			#linia2 {
+				top: 12px;
+			}
+			#linia3 {
+				top: 46px;
+			}
+			#linia4 {
+				top: 68px;
+			}
+			
+		</style>
+		<script>
+			function $(id)
+			{ return document.getElementById(id); }
+		</script>
+	</head>
+	<body onLoad="posaOpcionsMeme(); posaImatgeFons(3); actualitza();">
+		<div id="opcionsMeme"></div>
+		<div id="entrarDades">
+			<span class="text">Línia 1 <input id="linia1" placeholder="Escriu aquí el text" value="primera linia" oninput="actualitza();">
+			<input id="linia2" placeholder="Escriu aquí el text" oninput="actualitza();">
+			<input type="range" id="posLin12" oninput="actualitza();" value="5">
+			<input type="range" id="midaLin12" oninput="actualitza();">
+			<input type="color" id="colorIN12" onchange="actualitza();" value="#ffffff">
+			<input type="color" id="colorBord12" onchange="actualitza();">
+			<span class="check1"><input type="checkbox" id="maj1" onchange="actualitza();">Majúscules</span>
+			</span>
+			
+			<br><br><br>
+			
+			<span class="text">Línia 2 <input id="linia3" placeholder="Escriu aquí el text" oninput="actualitza();">
+			<input id="linia4" placeholder="Escriu aquí el text" oninput="actualitza();">
+			<input type="range" id="posLin34" oninput="actualitza();" value="95">
+			<input type="range" id="midaLin34" oninput="actualitza();">
+			<input type="color" id="colorIN34" onchange="actualitza();" value="#ffffff">
+			<input type="color" id="colorBord34" onchange="actualitza();">
+			<span class="check2"><input type="checkbox" id="maj2" onchange="actualitza();">Majúscules</span>
+			</span>
+		</div>
+		<canvas id="canvas" width="555" height="550"></canvas>
+		<script>
+			var nImatge;
+			var c = document.getElementById("canvas");
+			var ctx = c.getContext("2d");
+			
+			function actualitza()
+			{
+				posaImatgeFons(nImatge);
+				ctx.drawImage(img, 0, 0);
+				img.onload = function(){
+					// LINIA 1 i 2 //
+					var esMaj=$("maj1").checked;
+					midaLin12=$("midaLin12").value;//mida de la linia 1 i 2
+					ctx.font = "bold "+midaLin12+"px impact";
+					ctx.fillStyle = $("colorIN12").value;//color
+					ctx.lineWidth=midaLin12/25;//si el text es molt petit, la vora que el ressegueix es mes prima
+					ctx.strokeStyle = $("colorBord12").value;//color marge
+					var linia1 = $("linia1").value;
+					var linia2 = $("linia2").value;
+					if (esMaj)
+					{
+						linia1=linia1.toUpperCase();
+						linia2=linia2.toUpperCase();
+					}
+					distTop=$("posLin12").value*2;
+					ctx.fillText(linia1, 10,40+distTop);
+					ctx.strokeText(linia1, 10,40+distTop);
+					ctx.fillText(linia2, 10,90+distTop);
+					ctx.strokeText(linia2, 10,90+distTop);
+					
+					// LINIA 3 i 4 //
+					
+					var esMaj=$("maj2").checked;
+					midaLin34=$("midaLin34").value;//mida de la linia 3 i 4
+					ctx.font = "bold "+midaLin34+"px impact";
+					ctx.fillStyle = $("colorIN34").value;//color
+					ctx.lineWidth=midaLin34/25;//si el text es molt petit, la vora que el ressegueix es mes prima
+					ctx.strokeStyle = $("colorBord34").value;//color marge
+					var linia3 = $("linia3").value;
+					var linia4 = $("linia4").value;
+					if (esMaj)
+					{
+						linia3=linia3.toUpperCase();
+						linia4=linia4.toUpperCase();
+					}
+					var distTop=$("posLin34").value*2;
+					ctx.fillText(linia3, 10,160+distTop);
+					ctx.strokeText(linia3, 10,160+distTop);
+					ctx.fillText(linia4, 10,210+distTop);
+					ctx.strokeText(linia4, 10,210+distTop);
+				}
+			}
+			ctx.fillRect(0,0,50,50);
+			ctx.fillRect(50,50,50,50);
+			ctx.fillRect(100,100,50,50);
+			ctx.fillRect(0,100,50,50);
+			ctx.fillRect(100,0,50,50);
+			
+			
+			
+			
+			
+			
+			
+			
+			
+		</script>
+		<!--                //////////////                        -->
+		<script>
+			var NUM_IMATGES=11;
+			
+			function posaOpcionsMeme()
+			{
+				var text="";
+				
+				for (var i=1;i<=NUM_IMATGES;i++)
+					text += '<p><img src="../imatges/meme'+i+'.png" width="100px" onClick="posaImatgeFons('+i+')" draggable="false"></p>';
+				$("opcionsMeme").innerHTML=text;
+			}
+			function posaImatgeFons(n)
+			{
+				nImatge=n;
+				img = new Image();
+				img.src = "../imatges/meme"+n+".png";
+				ctx.drawImage(img, 0, 0);
+				
+				img.onload = function(){
+					c.width=img.width;//adaptar la mida del canvas a la imatge
+					c.height=img.height;
+					ctx.drawImage(img, 0, 0);
+					actualitza();
+				}
+			}
+		</script>
+	</body>
+</html>

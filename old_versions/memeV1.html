@@ -1,0 +1,187 @@
+<html>
+	<head>
+		<style>
+			#canvas {
+				border: 2px dashed gray;
+			}
+			#opcionsMeme {
+				position: absolute;
+				top: 8px;
+				left: 580px;
+				width: 600px;
+				height: 30px;
+				background-color: lightgreen;
+			}
+			p {/* IMATGES PETITES PER SELECCIONAR */
+				margin: 10px;
+				float: left;
+				width: 100px;
+				height: 100px;
+			}
+			#entrarDades {
+				position:absolute;
+				top: 600px;
+				
+			}
+			.text {
+				font-family: Verdana;
+				font-size: 16px;
+			}
+			#linia1, #linia2, #linia3, #linia4 {/* INPUT TEXT */
+				position: absolute;
+				left: 60px;
+			}
+			#posLin12, #midaLin12, #posLin34, #midaLin34 {/* RANGE */
+				position: absolute;
+				left: 350px;
+				top: 0px;
+			}
+			
+			/* COLORS */
+			#colorIN12, #colorIN34 {
+				position: absolute;
+				left: 240px;
+			}
+			#colorBord12,  #colorBord34 {
+				position: absolute;
+				left: 290px;
+			}
+			#colorIN12, #colorBord12 {
+				top: -11px;
+			}
+			#colorIN34, #colorBord34 {
+				top: 45px;
+			}
+			/* END COLORS */
+			
+			.check1, .check2 {
+				position: absolute;
+				left: 232px;
+				width: 120px;
+			}
+			.check1 {
+				top: 13px;
+			}
+			.check2 {
+				top: 69px;
+			}
+			
+			#posLin12 {
+				top: -12px;
+			}
+			#midaLin12 {
+				top: 10px;
+			}
+			#posLin34 {
+				top: 44px;
+			}
+			#midaLin34 {
+				top: 66px;
+			}
+			
+			#linia1 {
+				top: -10px;
+			}
+			#linia2 {
+				top: 12px;
+			}
+			#linia3 {
+				top: 46px;
+			}
+			#linia4 {
+				top: 68px;
+			}
+			
+		</style>
+		<script>
+			function $(id)
+			{ return document.getElementById(id); }
+		</script>
+	</head>
+	<body onLoad="posaOpcionsMeme();">
+		<div id="opcionsMeme"></div>
+		<div id="entrarDades">
+			<span class="text">Línia 1 <input id="linia1" placeholder="Escriu aquí el text">
+			<input id="linia2" placeholder="Escriu aquí el text">
+			<input type="range" id="posLin12">
+			<input type="range" id="midaLin12">
+			<input type="color" id="colorIN12">
+			<input type="color" id="colorBord12">
+			<span class="check1"><input type="checkbox" id="maj1">Majúscules</span>
+			
+			</span>
+			<br><br><br>
+			<span class="text">Línia 2 <input id="linia3" placeholder="Escriu aquí el text">
+			<input id="linia4" placeholder="Escriu aquí el text">
+			<input type="range" id="posLin34">
+			<input type="range" id="midaLin34">
+			<input type="color" id="colorIN34">
+			<input type="color" id="colorBord34">
+			<span class="check2"><input type="checkbox" id="maj2">Majúscules</span>
+			
+			</span>
+		</div>
+		<canvas id="canvas" width="500" height="500"></canvas>
+		<script>
+			i=0;
+			var c = document.getElementById("canvas");
+			var ctx = c.getContext("2d");
+			
+			ctx.fillStyle="red";
+			
+			ctx.fillRect(10,10,110,110);
+			
+			ctx.lineWidth=5;
+			ctx.lineTo(20,415);
+			
+			ctx.lineTo(350,490);
+			ctx.lineTo(50,90);
+			ctx.lineTo(20,415);
+			
+			ctx.stroke();
+			
+			ctx.moveTo(300,150);
+			ctx.lineTo(300,250);
+			ctx.lineTo(340,250);
+			//ctx.stroke();
+			ctx.moveTo(400,150);
+			ctx.lineTo(370,200);
+			ctx.lineTo(400,250);
+			ctx.lineTo(430,200);
+			ctx.lineTo(400,150);
+			//
+			ctx.moveTo(450,150);
+			ctx.lineTo(450,250);
+			ctx.lineTo(490,250);
+			
+			ctx.stroke();
+
+		</script>
+		<!--                //////////////                        -->
+		<script>
+			var NUM_IMATGES=11;
+			
+			function posaOpcionsMeme()
+			{
+				var text="";
+				
+				for (var i=1;i<=NUM_IMATGES;i++)
+					text += '<p><img src="../imatges/meme'+i+'.png" width="100px" onClick="posaImatgeFons('+i+')" draggable="false"></p>';
+				$("opcionsMeme").innerHTML=text;
+			}
+			function posaImatgeFons(n)
+			{
+				/*i=Math.trunc(Math.random()*9);
+				n=n+i;*/
+				var img = new Image();
+				img.src = "../imatges/meme"+n+".png";
+				
+				img.onload = function(){
+					c.width=img.width;//adaptar la mida del canvas a la imatge
+					c.height=img.height;
+					ctx.drawImage(img, 0, 0);
+				}
+			}
+		</script>
+	</body>
+</html>

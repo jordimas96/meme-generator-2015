@@ -1,7 +1,6 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<link rel="icon" type="image/x-icon" href="favicon.ico">
 		<style>
 			@font-face {
 				font-family: 'impactreg';
@@ -25,6 +24,7 @@
 				float: left;
 				width: 100px;
 				height: 100px;
+				border-radius: 50%
 			}
 			.imatgePetita:hover {
 				transform: rotate(5deg);
@@ -32,9 +32,9 @@
 				width: 120px;
 				position: absolute;
 			}
-			.imatgePetita {
-				transition: 0.5s;
-			}
+      .imatgePetita {
+        transition: 0.5s;
+      }
 			#entrarDades, #opcionsPred {
 				position: absolute;
 				top: 600px;
@@ -154,31 +154,31 @@
 	<body onload="posaOpcionsMeme();">
 		<div id="opcionsMeme"></div>
 		<div id="opcionsPred">
-			<button class="botoEx1" onclick="ex(1);" >Example 1</button>
-			<button class="botoEx2" onclick="ex(2);" >Example 2</button>
-			<button class="botoEx3" onclick="ex(3);" >Example 3</button>
-			<button class="botoEx4" onclick="ex(4);" >Example 4</button>
+			<button class="botoEx1" onclick="ex(1);" >Exemple 1</button>
+			<button class="botoEx2" onclick="ex(2);" >Exemple 2</button>
+			<button class="botoEx3" onclick="ex(3);" >Exemple 3</button>
+			<button class="botoEx4" onclick="ex(4);" >Exemple 4</button>
 		</div>
 		<div id="entrarDades" hidden>
-			<button class="botoPred" onclick="pred();" >Reset values</button>
-			<span class="text">Line 1 <input id="linia1" placeholder="Write your text here" value="" oninput="actualitza();">
-				<input id="linia2" placeholder="Write your text here"  value="" oninput="actualitza();">
+			<button class="botoPred" onclick="pred();" >Reiniciar valors</button>
+			<span class="text">Línia 1 <input id="linia1" placeholder="Escriu aquí el text" value="" oninput="actualitza();">
+				<input id="linia2" placeholder="Escriu aquí el text"  value="" oninput="actualitza();">
 				<input type="range" id="posLin12" oninput="actualitza();" value="5">
 				<input type="range" id="midaLin12" oninput="actualitza();">
 				<input type="color" id="colorIN12" onchange="actualitza();" value="#ffffff">
 				<input type="color" id="colorBord12" onchange="actualitza();">
-				<span class="check1"><input type="checkbox" id="maj1" onchange="actualitza();">Upper case</span>
+				<span class="check1"><input type="checkbox" id="maj1" onchange="actualitza();">Majúscules</span>
 			</span>
 
 			<br><br><br>
 
-			<span class="text">Line 2 <input id="linia3" placeholder="Write your text here" value="" oninput="actualitza();">
-				<input id="linia4" placeholder="Write your text here" value="" oninput="actualitza();">
+			<span class="text">Línia 2 <input id="linia3" placeholder="Escriu aquí el text" value="" oninput="actualitza();">
+				<input id="linia4" placeholder="Escriu aquí el text" value="" oninput="actualitza();">
 				<input type="range" id="posLin34" oninput="actualitza();" value="95">
 				<input type="range" id="midaLin34" oninput="actualitza();">
 				<input type="color" id="colorIN34" onchange="actualitza();" value="#ffffff">
 				<input type="color" id="colorBord34" onchange="actualitza();">
-				<span class="check2"><input type="checkbox" id="maj2" onchange="actualitza();">Upper case</span>
+				<span class="check2"><input type="checkbox" id="maj2" onchange="actualitza();">Majúscules</span>
 			</span>
 			<input type="range" id="rotar1" oninput="actualitza();" value="0">
 			<input type="range" id="rotar2" oninput="actualitza();" value="0">
@@ -311,7 +311,7 @@
 				if (nImatge!=0)
 				{
 					img = new Image();
-					img.src = "imatges/meme"+nImatge+".png";//aqui es comença a carregar la imatge
+					img.src = "../imatges/meme"+nImatge+".png";//aqui es comença a carregar la imatge
 
 					img.onload = function(){
 						/*
@@ -400,7 +400,7 @@
 				var text="";
 
 				for (var i=1;i<=NUM_IMATGES;i++)
-					text += '<p><img class="imatgePetita" src="../imatges/meme'+i+'.png" width="100px" onClick="posaImatgeFons('+i+')" draggable="false" style="border-radius: 10px"></p>';
+					text += '<p><img class="imatgePetita" src="../imatges/meme'+i+'.png" width="100px" onClick="posaImatgeFons('+i+')" draggable="false" style="border-radius: 10%"></p>';
 				$("opcionsMeme").innerHTML=text;
 			}
 
